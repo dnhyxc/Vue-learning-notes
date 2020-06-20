@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      {{message}}<br/>
+      <ul>
+         <li v-for="item in names" :key="item">{{item}}</li>
+      </ul>
+      <ul>
+         <li>v-for遍同时获取index</li>
+         <li v-for="(item,index) in names">{{index+1}}.{{item}}</li>
+      </ul>
+   </div>
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el: '#app',
+         data: {
+            message:'v-for遍历数组',
+            names:['zzz','aaa','sss','nnn','mmm']
+         }
+      })
+   </script>
+</body>
+
+</html>

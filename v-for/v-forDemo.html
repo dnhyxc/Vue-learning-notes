@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .active{
+         color: red;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="app">
+      {{message}}<br/>
+      <ul>
+         <li v-for="(item,index) in names"
+            :class="{active:currentIndex === index}"
+            @click="liClick(index)"
+         >{{item}}</li>
+      </ul>
+      
+   </div>
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el: '#app',
+         data: {
+            message:'v-for遍历数组',
+            names:['zzz','aaa','sss','nnn','mmm'],
+            currentIndex:0
+         },
+         methods:{
+            liClick(index){
+               this.currentIndex=index
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

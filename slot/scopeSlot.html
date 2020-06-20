@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <div>显示方式一</div>
+      <slotcpn>
+         <div slot-scope="slot">
+            <span>{{slot.data.join(' - ')}}</span>
+         </div>
+      </slotcpn>
+      <div>显示方式二</div>
+      <slotcpn>
+         <div slot-scope="slot">
+            <span>{{slot.data.join(' * ')}}</span>
+         </div>
+      </slotcpn>
+      <div>显示方式三</div>
+      <slotcpn></slotcpn>
+   </div>
+
+   <template id="cpn">
+      <div>
+         <slot :data="names">
+            <ul>
+               <li v-for="item in names">{{item}}</li>
+            </ul>
+         </slot>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+   <script>
+      const slotcpn = {
+         template: cpn,
+         data() {
+            return {
+               names: ['zzz', 'fff', 'sss', 'nnn', 'mmm']
+            }
+         }
+      }
+      const app = new Vue({
+         el: "#app",
+         data: {
+            message: "作用域slot插槽"
+         },
+         components: {
+            slotcpn
+         }
+      })
+   </script>
+</body>
+
+</html>

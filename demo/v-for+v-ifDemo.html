@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      .thead {
+         background-color: #ccc;
+      }
+   </style>
+</head>
+
+<body>
+   <div id="app">
+      <div v-if="books.length>0">
+         <table>
+            <thead class="thead">
+               <tr>
+                  <th>ID</th>&nbsp;&nbsp;
+                  <th>书籍名称</th>&nbsp;&nbsp;
+                  <th>出版日期</th>&nbsp;&nbsp;
+                  <th>价格</th>&nbsp;&nbsp;
+                  <th>数量</th>&nbsp;&nbsp;
+                  <th>操作</th>&nbsp;&nbsp;
+               </tr>
+            </thead>
+            <tbody>
+               <tr v-for="(item,index) in books">
+                  <td>{{item.id}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.data}}</td>
+                  <td>{{item.price | sumCount}}</td>
+                  <td>
+                     <button @click="decrement(index)" :disabled="item.count <= 1">-</button>
+                     {{item.count}}
+                     <button @click="increment(index)">+</button>
+                  </td>
+                  <td><button @click="remove(index)">删除</button></td>
+               </tr>
+            </tbody>
+         </table>
+         <h2>总价：{{sumPrice | sumCount}}</h2>
+      </div>
+      <div v-else>
+         <h1>购物车为空</h1>
+      </div>
+   </div>
+
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el: "#app",
+         data: {
+            books: [
+               {
+                  id: 1,
+                  name: '《React》',
+                  data: "2020-6",
+                  price: 85.00,
+                  count: 1
+               },
+               {
+                  id: 2,
+                  name: '《Redux》',
+                  data: "2020-6",
+                  price: 99.00,
+                  count: 1
+               },
+               {
+                  id: 3,
+                  name: '《JS》',
+                  data: "2020-6",
+                  price: 86.00,
+                  count: 1
+               },
+               {
+                  id: 4,
+                  name: '《webpack》',
+                  data: "2020-6",
+                  price: 69.00,
+                  count: 1
+               },
+            ]
+         },
+         methods:{
+            increment(index){
+               this.books[index].count++
+            },
+            decrement(index){
+               this.books[index].count--
+            },
+            remove(index){
+               this.books.splice(index,1)
+            }
+         },
+         // 过滤器
+         filters:{
+            sumCount(price){
+               return "￥" + price.toFixed(2)
+            }
+         },
+         computed:{
+            sumPrice(){
+               let sum=this.books.reduce((sum,item)=>{
+                  return sum += item.price*item.count
+               },0)
+               return sum
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

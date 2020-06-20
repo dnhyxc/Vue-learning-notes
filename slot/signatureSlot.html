@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <slotcpn><button slot="left">leftBtn</button></slotcpn>
+      <slotcpn><i slot="right">i标签替换了右边的slot</i></slotcpn>
+      <slotcpn></slotcpn>
+      <slotcpn>替换了没有设置name的slot</slotcpn>
+   </div>
+
+   <template id="cpn">
+      <div>
+         <h3>具名slot组件中设置了多个插槽</h3>
+         <slot name="left"><span>左边</span></slot>
+         <slot name="middle"><span>中间</span></slot>
+         <slot name="right"><span>右边</span></slot>
+         <slot><span>没有名字的slot</span></slot>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+   <script>
+      const slotcpn = {
+         template: cpn
+      }
+      const app = new Vue({
+         el: "#app",
+         data: {
+            message: "slot插槽"
+         },
+         components: {
+            slotcpn
+         }
+      })
+   </script>
+</body>
+
+</html>

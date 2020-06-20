@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>V-on</title>
+</head>
+<body>
+   <div id="app">
+      {{message}}<br/>
+      <button @click='btnClick(123)'>btnClick</button><br/>
+      <!-- 
+         在事件定义时，写方法时省略了小括号，但是方法本身是需要一个参数的，
+         这个时候，Vue会默认将浏览器产生的event事件对象作为参数传入到方法中。
+       -->
+      <button @click='btnClick1'>btnClick1</button><br/>
+      <!-- 
+         当调用方法时需要获取传入实参的同时，还需要获取event对象时，
+         需要传入 @event 来获取。
+       -->
+      <button @click='btnClick2(abc,$event)'>btnClick2</button><br/>
+   </div>
+
+   <!-- CDN引入 -->
+   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+   
+   <!-- 本地下载引入 -->
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el:'#app',
+         data:{
+            message:'hello Vue!',
+            abc:'zzz'
+         },
+         methods:{
+            // ES6对象增强写法：可以将:function省略。
+            // 原来写法为：btnClick：function(){.....}
+            btnClick(a){
+               console.log("btnClick------",a)
+            },
+            btnClick1(event){
+               console.log("btnClick111111",event)
+            },
+            btnClick2(abc,event){
+               console.log("btnClick222222",abc,event)
+            }
+         }
+      })
+   </script>
+</body>
+</html>

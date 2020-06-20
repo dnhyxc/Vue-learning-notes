@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <!-- 父组件模板 -->
+      <div>我是app的child</div>
+      <cpn :cname="name"></cpn>
+      <div>----------------</div>
+   </div>
+
+   <template id="cpn">
+      <!-- 子组件模板 -->
+      <div>
+         <childcpn :ccname="cname"></childcpn>
+         <h2>{{cname}}</h2>
+         <button @click="cpnBtnClick">cpn</button>
+      </div>
+   </template>
+   <template id="childcpn">
+      <!-- 子组件模板 -->
+      <div>
+         <div>我是cpn的child</div>
+         <h3>{{ccname}}</h3>
+         <button @click="btnClick">cpnChild</button>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({   // 父组件，是Vue构造函数的一个实例
+         el: "#app",
+         data: {
+            name: "zzzsss",
+         },
+         components: {
+            cpn: {
+               template: cpn,
+               props: {
+                  cname: String
+               },
+               data(){
+                  return{
+                     ccname:"cname"
+                  }
+               },
+               methods:{
+                  cpnBtnClick(){
+                     console.log(this.$parent)  // Vue实例
+                     console.log(this.$parent.name)  // zzzsss
+                  }
+               },
+               components: {
+                  childcpn: {
+                     template: childcpn,
+                     props: {
+                        ccname: String
+                     },
+                     methods:{
+                        btnClick(){
+                           // 使用$parent可以访问当前组件的父组件
+                           console.log(this.$parent)  //cpn 组件 
+                           console.log(this.$parent.cname)  // zzzsss
+                           // 使用$root可以访问根组件
+                           console.log(this.$root)  // Vue实例
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

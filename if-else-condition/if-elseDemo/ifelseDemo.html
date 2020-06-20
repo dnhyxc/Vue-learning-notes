@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <span v-if="login">
+         <label for="QQ">QQ登录</label>
+         <input type="text" id="QQ" placeholder="QQ" key="qqnumber">
+      </span>
+      <!-- 
+         给input输入框设置 key值 是为了解决切换输入框后，
+         之前在输入框中输入的内容不会清空的问题。
+         这涉及到虚拟DOM的问题，出现上面的情况是因为前后输入框进行了复用。
+      -->
+      <span v-else>
+         <label for="VX">VX登录</label>
+         <input type="text" id="VX" placeholder="微信" key="vxnumber">
+      </span>
+      <button @click="btnClick()">btnClick</button>
+   </div>
+   <script src="../../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el: '#app',
+         data: {
+            message: "Hello Vue",
+            login: true
+         },
+
+         methods:{
+            btnClick(){
+               this.login=!this.login
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

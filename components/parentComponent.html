@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="app">
+      <!-- 3，使用创建好的组件 -->
+      <h2>父子组件</h2>
+      <parentcpn></parentcpn>
+   </div>
+
+   <script src="../vue.js"></script>
+   <script>
+      // 1，创建组件构造器对象
+      const cpn = Vue.extend({
+         template:
+            `<div>
+               <h3>子组件</h3>
+               <p>创建组件构造器对象</p>
+               <p>注册局部组件</p>
+               <p>使用创建好的组件</p>
+            </div>`
+      })
+      const cpnC = Vue.extend({
+         template:
+            `<div>
+               <h2>父组件</h2>
+               <p>创建组件构造器对象</p>
+               <childcpn></childcpn>
+            </div>`,
+            components:{
+               childcpn:cpn
+            }
+      })
+
+      const app = new Vue({
+         el:"#app",
+         data:{
+            message:"组件化编程"
+         },
+         // 注册局部组件
+         components:{
+            // mycpn组件标签名。cpn为组件构造器对象
+            // 注册组建时，组件的标签名不能有大写字母
+            parentcpn:cpnC
+         }
+      })
+   </script>
+</body>
+</html>

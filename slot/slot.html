@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <slotcpn><button>slotButton</button></slotcpn>
+      <slotcpn><h2>slot使组件具有扩展性</h2></slotcpn>
+      <slotcpn></slotcpn>
+      <slotcpn><i>我是slotComponent</i></slotcpn>
+      <slotcpn></slotcpn>
+   </div>
+
+   <!-- 
+      1，使用<slot></slot>设置插槽。
+      2，插槽可以设置默认值：<slot><h2>XXX</h2></slot>
+      3，如果有多个值，同时放入到组件进行替换时，一起作为替换元素替换插槽设置的默认值。
+    -->
+
+   <template id="cpn">
+      <div>
+         <h3>slot组件</h3>
+         <h4>slot组件具有扩展性</h4>
+         <!-- 
+               可在插槽中设置默认值，如果使用组件时，
+            没有在具有插槽的组件中传递内容就会使用插槽中设置的默认值。
+         -->
+         <slot><button>slotButton</button></slot>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+   <script>
+      const slotcpn={
+         template:cpn
+      }
+      const app = new Vue({
+         el:"#app",
+         data:{
+            message:"slot插槽"
+         },
+         components:{
+            slotcpn
+         }
+      })
+   </script>
+</body>
+
+</html>

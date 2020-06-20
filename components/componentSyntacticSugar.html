@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <!-- 3，使用创建好的组件 -->
+      <h2>父子组件</h2>
+      <globalcpn></globalcpn>
+      <topo></topo>
+   </div>
+
+   <script src="../vue.js"></script>
+   <script>
+      // 1，语法糖创建组件构造器对象
+      Vue.component("globalcpn", {
+         template:
+            `<div>
+               <h3>Global组件语法糖</h3>
+               <p>语法糖注册全局组件</P>
+            </div>`
+      })
+
+      const app = new Vue({
+         el: "#app",
+         data: {
+            message: "组件化编程"
+         },
+         // 语法糖注册局部组件
+         components: {
+            topo: {
+               template:
+                  `<div>
+               <h3>Topo组件语法糖</h3>
+               <p>语法糖注册局部组件</P>
+            </div>`
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

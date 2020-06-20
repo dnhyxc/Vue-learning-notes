@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <!-- select单选情况 -->
+      <select name="姓名" v-model="name">
+         <option value="mmm">mmm</option>
+         <option value="sss">sss</option>
+         <option value="nnn">nnn</option>
+         <option value="hhh">hhh</option>
+         <option value="zzz">zzz</option>
+      </select>
+      <h2>{{name}}</h2>
+
+
+      <!-- select多选情况：相比单选情况，只需要添加 multiple 属性即可-->
+      <select name="姓名" v-model="names" multiple>
+         <option value="mmm">mmm</option>
+         <option value="sss">sss</option>
+         <option value="nnn">nnn</option>
+         <option value="hhh">hhh</option>
+         <option value="zzz">zzz</option>
+      </select>
+      <h2>{{names}}</h2>
+   </div>
+
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el:"#app",
+         data:{
+            name:"nnn",
+            names:[],
+         }
+      })
+   </script>
+</body>
+
+</html>

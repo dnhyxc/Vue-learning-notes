@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="app">
+      <!-- 传递的属性名使用驼峰标识时，必须使用“ - ”进行转换 -->
+      <mycpn :c-info="info" :cmessage="message"></mycpn>
+   </div>
+   <template id="cpn">
+      <div>
+         <h2>{{cmessage}}</h2>
+         <h2>{{cInfo}}</h2>
+         <ul>
+            <li v-for="(value,key) in cInfo">{{key}}-{{value}}</li>
+         </ul>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+
+   <script>
+      // 将模板对象单独提取出来
+      const mycpn={
+         template:cpn,
+         props:{
+            cmessage:{
+               type:String,
+               default:"snsn",
+               required:true
+            },
+            cInfo:{
+               type:Object,
+               default(){
+                  return {}
+               }
+            }
+         }
+      }
+
+      const app=new Vue({
+         el:"#app",
+         data:{
+            message:'组件通信',
+            info:{
+               name:'fff',
+               age:18,
+               hobbies:'sing'
+            }
+         },
+         components:{
+            // mycpn:mycpn
+            // 使用对象增强写法
+            mycpn
+         }
+      })
+   </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+<body>
+   <div id="app">
+      <mycpn :cnames="names" :cmessage="message"></mycpn>
+   </div>
+   <template id="cpn">
+      <div>
+         <h2>{{cmessage}}</h2>
+         <ul>
+            <li v-for="item in cnames">{{item}}</li>
+         </ul>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+
+   <script>
+      // 将模板对象单独提取出来
+      const mycpn={
+         template:cpn,
+         
+         // props数组的形式写法
+         // props:["cnames","cmessage"]
+
+         // props对象写法
+         props:{
+            // 1，对数据进行类型限制
+            // cnames:Array,
+            // cmessage:String
+
+            // 2，对数据进行类型限制的同时，提供默认值
+            cmessage:{
+               type:String,
+               // 默认值在<mycpn :cnames="names" ></mycpn>中没有传递的情况下显示
+               default:"snsn",
+               // 必须要传递该数据
+               required:true
+            },
+            // 类型是对象或者数组时，默认值必须是一个函数。
+            cnames:{
+               type:Array,
+               default(){
+                  return []
+               }
+            }
+         }
+      }
+
+      const app=new Vue({
+         el:"#app",
+         data:{
+            message:'组件通信',
+            names:['zzz','hhh','fff','sss','mmm','nnn']
+         },
+         components:{
+            // mycpn:mycpn
+            // 使用对象增强写法
+            mycpn
+         }
+      })
+   </script>
+</body>
+</html>

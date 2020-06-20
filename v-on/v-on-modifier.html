@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>v-on-modifier</title>
+</head>
+
+<body>
+   <div id="app">
+      <div @click="divClick">
+         <!-- .stop用于阻止事件冒泡到父元素，相当于event.stopPropagation() -->
+         <button @click.stop="btnClick">button</button><br />
+      </div>
+      
+      <form action="baidu">
+         <!-- .prevent用于阻止表单默认提交行为，相当于event.preventDefault() -->
+         <input type="submit" value="submit" @click.prevent="submitClick">
+      </form>
+
+      <!-- 监听keyup键盘事件中的enter键 -->
+      <input type="text" @keyup.enter="keyUp"><br/>
+
+      <!-- .once用于只触发一次的事件 -->
+      <button @click.stop.once="btnOnce">btnOnce</button>
+   </div>
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el: "#app",
+         data: {
+            message: 'Hello Vue'
+         },
+         methods: {
+            btnClick() {
+               console.log('btnClick')
+            },
+            divClick: function () {
+               console.log('divClick')
+            },
+            submitClick() {
+               console.log('submitClick')
+            },
+            keyUp() {
+               console.log('keyUp')
+            },
+            btnOnce() {
+               console.log('btnOnce')
+            },
+         }
+      })
+   </script>
+</body>
+
+</html>

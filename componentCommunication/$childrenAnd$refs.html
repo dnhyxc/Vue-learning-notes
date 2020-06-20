@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">  <!-- 父组件模板 -->
+      <refcpn :cname="name"></refcpn>
+      <refcpn :cname="name"></refcpn>
+      <refcpn :cname="name" ref="snsn"></refcpn>
+      <button @click="btnClick">refBtn</button>
+   </div>
+
+   <template id="cpn">  <!-- 子组件模板 -->
+      <div>
+         <h2>{{cname}}</h2>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+   <script>
+      const refcpn = {  // 子组件，本身是一个对象
+         template: cpn,
+         props: {
+            cname: String
+         },
+      }
+      const app = new Vue({   // 父组件，是Vue构造函数的一个实例
+         el: "#app",
+         data: {
+            name: 'snsnsn',
+         },
+         methods: {
+            btnClick() {
+               // 使用$refs获取子组件数据
+               const $fersGetName = this.$refs.snsn.cname
+               console.log($fersGetName, "$refs")
+               // 使用$children获取子组件数据
+               const $childrenGetName = this.$children[0].cname
+               console.log($childrenGetName, '$children')
+            }
+         },
+         components: {refcpn}
+      })
+   </script>
+</body>
+
+</html>

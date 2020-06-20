@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <!-- 
+            checkbox多选框使用值绑定的情况。 
+         只要是动态的属性，就需要使用v-bind进行动态绑定。
+      -->
+      <label :for="item" v-for="item in allHobbies">
+         <input type="checkbox" :value="item" :id="item" v-model="checkedhobbies">{{item}}
+      </label>
+      <h2>选中的爱好是：{{checkedhobbies}}</h2>
+   </div>
+
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el:"#app",
+         data:{
+            checkedhobbies:[],
+            allHobbies:['篮球',"足球",'乒乓球',"羽毛球",'台球',"排球"]
+         }
+      })
+   </script>
+</body>
+
+</html>

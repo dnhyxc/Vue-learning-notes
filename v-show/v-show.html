@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <!-- v-if：当条件为false时，包含v-if的元素会直接从dom中删除 -->
+      <h2 v-if='isShow'>{{message}}</h2>
+      <!-- 
+         v-show：当条件为false时，
+         只是给拥有v-show的元素添加了一个行内样式：display：none。
+         该元素依然存在于DOM中，只是隐藏起来了。
+      -->
+      <h2 v-show="isShow">Welcome to Vue</h2>
+      <button @click="btnClick()">btnClick</button>
+   </div>
+   <script src="../vue.js"></script>
+   <script>
+      const app = new Vue({
+         el: '#app',
+         data: {
+            message: "Hello Vue",
+            isShow: true
+         },
+
+         methods:{
+            btnClick(){
+               this.isShow=!this.isShow
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>

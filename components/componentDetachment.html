@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+</head>
+
+<body>
+   <div id="app">
+      <!-- 3，使用创建好的组件 -->
+      <h2>父子组件</h2>
+      <globalcpn></globalcpn>
+      <topocpn></topocpn>
+   </div>
+
+   <!-- 组件模板抽离写法一 -->
+   <script type="text/x-template" id="global">
+      <div>
+         <h2>组件模板抽离写法一</h2>
+         <p>抽离组件模板的写法有两种</p>
+         <p>使用写法一抽离全局组件模板</p>
+      </div>
+   </script>
+
+   <!-- 组件模板抽离写法二 -->
+   <template id="topo">
+      <div>
+         <h2>组件模板抽离写法二</h2>
+         <p>抽离组件模板的写法有两种</p>
+         <p>使用写法二抽离局部组件模板</p>
+      </div>
+   </template>
+
+   <script src="../vue.js"></script>
+   <script>
+      // 1，语法糖创建组件构造器对象
+      Vue.component("globalcpn", {
+         template:'#global'
+      })
+
+      const app = new Vue({
+         el: "#app",
+         data: {
+            message: "组件化编程"
+         },
+         // 语法糖注册局部组件
+         components: {
+            topocpn: {
+               template:topo
+            }
+         }
+      })
+   </script>
+</body>
+
+</html>
