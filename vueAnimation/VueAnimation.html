@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 以下两个类名是定义从显示到隐藏的过渡效果 */
+    .fade-enter-active,
+    .fade-leave-active {
+      transition: opacity .5s;
+    }
+
+    /* 以下两个类名是定义隐藏时的样式 */
+    .fade-enter,
+    .fade-leave-to {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="demo">
+    <button v-on:click="show = !show">
+      Toggle
+    </button>
+    <transition name="fade">
+      <p v-if="show">hello</p>
+    </transition>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    new Vue({
+      el: '#demo',
+      data: {
+        show: true
+      }
+    })
+  </script>
+</body>
+</html>

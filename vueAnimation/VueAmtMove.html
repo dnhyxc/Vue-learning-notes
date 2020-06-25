@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* 定义显示时的过渡效果 */
+    /* 设置持续时间和动画函数 */
+    .slide-fade-enter-active {
+      transition: all 5s ease;
+    }
+
+    /* 定义隐藏时的过渡效果 */
+    .slide-fade-leave-active {
+      transition: all 3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    /* 定义进入隐藏时的过渡效果 */
+    .slide-fade-enter,
+    .slide-fade-leave-to {
+      transform: translateX(20px);
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="example-1">
+    <button @click="show = !show">
+      Toggle render
+    </button>
+    <transition name="slide-fade">
+      <p v-if="show">hello</p>
+    </transition>
+  </div>
+
+  <script src="../vue.js"></script>
+  <script>
+    new Vue({
+      el: '#example-1',
+      data: {
+        show: true
+      }
+    })
+  </script>
+</body>
+
+</html>
